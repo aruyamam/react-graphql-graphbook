@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../assets/css/style.css';
 
 const posts = [
   {
@@ -28,7 +29,7 @@ export default class App extends Component {
     const { posts } = this.state;
 
     return (
-      <div className="cotnainer">
+      <div className="container">
         <div className="feed">
           {posts.map((post, i) => (
             <div key={post.id} className="post">
