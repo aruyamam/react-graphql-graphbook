@@ -3,7 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebapckPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const outputDirectory = 'dist';
+const buildDirectory = 'dist';
+const outputDirectory = `${buildDirectory}/client`;
 
 module.exports = {
   mode: 'production',
