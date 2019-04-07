@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Chat = sequelize.define(
     'Chat',
@@ -13,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     Chat.belongsToMany(models.User, {
       through: 'users_chats',
     });
+    Chat.hasMany(models.Message);
   };
   return Chat;
 };
