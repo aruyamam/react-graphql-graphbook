@@ -61,9 +61,9 @@ export default class Feed extends Component {
     const { postContent } = this.state;
 
     return (
-      <Query query={GET_POSTS}>
+      <Query query={GET_POSTS} pollInterval={5000}>
         {({ loading, error, data }) => {
-          if (loading) return 'Loading...';
+          if (loading) return <p>Loading...</p>;
           if (error) return error.message;
 
           const { posts } = data;
@@ -71,7 +71,27 @@ export default class Feed extends Component {
           return (
             <div className="container">
               <div className="postForm">
-                <Mutation mutation={ADD_POST}>
+                <Mutation
+                  mutation={ADD_POST}
+                  update={(store, { data: { addPost } }) => {
+                    const data = store.readQuery({ query: GET_POSTS });
+                    data.posts.unshift(addPost);
+                    store.writeQuery({ query: GET_POSTS, data });
+                  }}
+                  optimisticResponse={{
+                    __typename: 'mutation',
+                    addPost: {
+                      __typename: 'Post',
+                      text: postContent,
+                      id: -1,
+                      user: {
+                        __typename: 'User',
+                        username: 'Loading...',
+                        avatar: '/public/loading.gif',
+                      },
+                    },
+                  }}
+                >
                   {addPost => (
                     <form
                       onSubmit={(e) => {
@@ -95,7 +115,7 @@ export default class Feed extends Component {
               </div>
               <div className="feed">
                 {posts.map(post => (
-                  <div key={post.id} className="post">
+                  <div key={post.id} className={`post${post.id < 0 ? 'optimistic' : ''}`}>
                     <div className="header">
                       <img src={post.user.avatar} alt={post.username} />
                       <h2>{post.user.username}</h2>
