@@ -27,6 +27,9 @@ export default function resolver() {
       users(chat, args, context) {
         return chat.getUsers();
       },
+      lastMessage(chat, args, context) {
+        return chat.getMessages({ limit: 1, order: [['id', 'DESC']] }).then(message => message[0]);
+      },
     },
     RootQuery: {
       posts(root, args, context) {
@@ -102,10 +105,9 @@ export default function resolver() {
 
           return Message.create({
             ...message,
-          }).then(newMessage => Promise.all([
-            newMessage.setUser(usersRow.id),
-            newMessage.setChat(message.chatId),
-          ]).then(() => newMessage));
+          }).then(newMessage => Promise.all([newMessage.setUser(usersRow.id), newMessage.setChat(message.chatId)]).then(
+            () => newMessage,
+          ));
         });
       },
     },
