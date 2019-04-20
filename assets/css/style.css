@@ -131,3 +131,69 @@ form [type=submit] {
    color: #333;
    font-size: 12px;
 }
+
+.wrapper {
+   top: 0;
+   right: 0;
+   height: 100%;
+}
+
+.openChats {
+   position: fixed;
+   right: 200px;
+   bottom: 0;
+   width: calc(100% - 200px);
+}
+
+.chatWindow {
+   width: 250px;
+   height: 300px;
+   margin-right: 10px;
+   background-color: #eee;
+   border-left: 1px solid #c3c3c3;
+   border-right: 1px solid #c3c3c3;
+   float: right;
+}
+
+.chatWindow .header {
+   width: calc(100% - 10px);
+   padding: 5px;
+   background-color: #c3c3c3;
+}
+
+.chatWindow .header .close {
+   background: none;
+   color: #fff;
+   border: none;
+   float: right;
+   cursor: pointer;
+}
+
+.chatWindow .header .close:focus {
+   outline: none;
+}
+
+.chatWindow .messages {
+   height: calc(100% - 50px);
+   overflow-y: auto;
+}
+
+.chatWindow .messages .message {
+   width: 80%;
+   margin: 2px;
+   padding: 2px;
+   border: 1px solid #4079f3;
+   border-radius: 5px;
+}
+
+.chatWindow .messages .message.left {
+   background-color: #78a3ff;
+   color: #fff;
+   float: left;
+}
+
+.chatWindow .messages .message.right {
+   background-color: #e8f4fb;
+   color: #fff;
+   float: right;
+}
