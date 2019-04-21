@@ -197,3 +197,13 @@ form [type=submit] {
    color: #fff;
    float: right;
 }
+
+.chatWindow .input input {
+   width: calc(100% - 4px);
+   padding: 2px;
+   border: none;
+}
+
+.chatWindow .input input:focus {
+   outline: onne;
+}
