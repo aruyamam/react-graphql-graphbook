@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
+import Loading from './components/loading';
 
 const GET_CHATS = gql`
   {
@@ -143,7 +144,6 @@ export default class Chats extends Component {
 
               return chats.map((chat, i) => (
                 <div key={`chat${chat.id}`} className="chat" onClick={() => this.openChat(chat.id)}>
-                  {console.log(chat)}
                   <div className="header">
                     <img
                       src={chat.users.length > 2 ? '/public/group.png' : chat.users[1].avatar}
@@ -163,7 +163,7 @@ export default class Chats extends Component {
           {openChats.map(chatId => (
             <Query key={`chatWindow${chatId}`} query={GET_CHAT} variables={{ chatId }}>
               {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
+                if (loading) return <Loading />;
                 if (error) return error.message;
 
                 const { chat } = data;
