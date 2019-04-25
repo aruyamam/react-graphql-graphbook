@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({ color, size }) => {
+const loading = ({ color, size }) => {
   const style = {
     backgroundColor: '#6ca6fd',
     width: 40,
@@ -17,3 +18,15 @@ export default ({ color, size }) => {
 
   return <div className="bouncer" style={style} />;
 };
+
+loading.defaultProps = {
+  color: '#000',
+  size: 40,
+};
+
+loading.propTypes = {
+  color: PropTypes.string,
+  size: PropTypes.number,
+};
+
+export default loading;

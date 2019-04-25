@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
 import InfiniteScroll from 'react-infinite-scroller';
 import Loading from './components/loading';
+import Error from './components/error';
 import '../../assets/css/style.css';
 
 const GET_POSTS = gql`
@@ -100,7 +101,13 @@ export default class Feed extends Component {
           loading, error, data, fetchMore,
         }) => {
           if (loading) return <Loading />;
-          if (error) return error.message;
+          if (error) {
+            return (
+              <Error>
+                <p>error.message</p>
+              </Error>
+            );
+          }
 
           const { postsFeed } = data;
           const { posts } = postsFeed;
@@ -155,7 +162,7 @@ export default class Feed extends Component {
                 <InfiniteScroll
                   loadMore={() => this.loadMore(fetchMore)}
                   hasMore={hasMore}
-                  loader={Loading}
+                  loader={<Loading key="loader" />}
                 >
                   {posts.map(post => (
                     <div key={post.id} className={`post${post.id < 0 ? 'optimistic' : ''}`}>
