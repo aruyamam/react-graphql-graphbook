@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+import { GET_POSTS } from './queries';
 import Loading from '../loading';
 import Error from '../error';
 
-const GET_POSTS = gql`
-  query postsFeed($page: Int, $limit: Int) {
-    postsFeed(page: $page, limit: $limit) {
-      posts {
-        id
-        text
-        user {
-          avatar
-          username
-        }
-      }
-    }
-  }
-`;
-
-export class postsFeed extends Component {
+export class PostsFeed extends Component {
   getVariables() {
     const { variables } = this.props;
     const queryVariables = {
@@ -67,4 +53,12 @@ export class postsFeed extends Component {
   }
 }
 
-export default postsFeed;
+PostsFeed.propTypes = {
+  children: PropTypes.node.isRequired,
+  variables: PropTypes.shape({
+    limit: PropTypes.number,
+    page: PropTypes.number,
+  }).isRequired,
+};
+
+export default PostsFeed;
