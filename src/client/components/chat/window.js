@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddMessageMutation from '../mutations/addMessage';
 import ChatInput from './input';
 
@@ -8,7 +9,7 @@ const ChatPanel = ({ chat, closeChat }) => (
     <div className="header">
       <span>{chat.users[1].username}</span>
       <button onClick={() => closeChat(chat.id)} type="button" className="close">
-        X
+        <FontAwesomeIcon icon="window-close" />
       </button>
     </div>
     <div className="messages">
