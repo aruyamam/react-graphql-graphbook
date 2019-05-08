@@ -58,6 +58,10 @@ const typeDefinitions = `
       addMessage (
          message: MessageInput!
       ): Message
+      updatePost (
+         post: PostInput!
+         postId: Int!
+      ): Post
    }
 
    type RootQuery {

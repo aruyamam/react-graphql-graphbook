@@ -249,3 +249,54 @@ form [type=submit] {
    border: 1px solid #ff9566;
    border-radius: 5px;
 }
+
+.dropdown .trigger > * {
+   display: block;
+   z-index: 1;
+}
+
+.dropdown .content {
+   position: absolute;
+}
+
+.dropdown div {
+   position: relative;
+}
+
+.post .header .dropdown {
+   float: right;
+   display: flex;
+   align-items: center;
+   height: 100%;
+   margin-right: 10px;
+}
+
+.post .header .dropdown:after {
+   content: '';
+   display: inline-block;
+   height: 100%;
+   font-size: 0;
+   vertical-align: middle;
+   box-sizing: border-box;
+}
+
+.post .header .dropdown .content {
+   position: relative;
+   right: 0;
+   width: 150px;
+   margin-left: 10px;
+   background-color: #fff;
+   border: 1px solid #333;
+   text-align: center;
+}
+
+.dropdown button {
+   width: 100%;
+   padding: 3px;
+   border: none;
+   border-bottom: 1px solid #333;
+}
+
+.dropdown button:last-child {
+   border-bottom: none;
+}

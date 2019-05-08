@@ -12,11 +12,16 @@ export default class Dropdown extends Component {
   handleClick = () => {
     const { show } = this.state;
 
-    if (!show) {
-      document.addEventListener('click', this.handleClick);
-    } else {
-      document.removeEventListener('click', this.handleClick);
-    }
+    this.setState(
+      prevState => ({ show: !prevState.show }),
+      () => {
+        if (!show) {
+          document.addEventListener('click', this.handleClick);
+        } else {
+          document.removeEventListener('click', this.handleClick);
+        }
+      },
+    );
   };
 
   render() {
@@ -24,7 +29,7 @@ export default class Dropdown extends Component {
     const { show } = this.state;
 
     return (
-      <div>
+      <div className="dropdown">
         <div>
           <div className="trigger" onClick={this.handleClick}>
             {trigger}

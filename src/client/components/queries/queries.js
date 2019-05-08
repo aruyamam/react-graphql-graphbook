@@ -28,6 +28,15 @@ export const ADD_POST = gql`
   }
 `;
 
+export const UPDATE_POST = gql`
+  mutation updatePost($post: PostInput!, $postId: Int!) {
+    updatePost(post: $post, psotId: $postId) {
+      id
+      text
+    }
+  }
+`;
+
 export const GET_CHATS = gql`
   {
     chats {

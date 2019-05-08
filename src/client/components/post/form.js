@@ -8,16 +8,20 @@ class PostForm extends Component {
   };
 
   render() {
-    const { addPost, changePostContent, postContent } = this.props;
+    const {
+      addPost, changePostContent, changeState, postContent, postId, updatePost,
+    } = this.props;
 
     return (
-      <div>
+      <div className="postForm">
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            addPost({ variables: { post: { text: postContent } } }).then(() => {
-              changePostContent('');
-            });
+            if (typeof updatePost !== typeof undefined) {
+              updatePost({ variables: { post: { text: postContent }, postId } }).then(() => changeState());
+            } else {
+              addPost({ variables: { post: { text: postContent } } }).then(() => changePostContent(''));
+            }
           }}
         >
           <textarea
