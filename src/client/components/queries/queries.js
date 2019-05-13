@@ -37,6 +37,14 @@ export const UPDATE_POST = gql`
   }
 `;
 
+export const DELETE_POST = gql`
+  mutation deletePost($postId: Int!) {
+    deletePost(postId: $postId) {
+      success
+    }
+  }
+`;
+
 export const GET_CHATS = gql`
   {
     chats {
