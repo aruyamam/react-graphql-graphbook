@@ -42,7 +42,7 @@ export default class SearchList extends Component {
       showList && (
         <div className="result">
           {users.map(user => (
-            <div className="user">
+            <div key={user.id} className="user">
               <img src={user.avatar} alt={user.username} />
               <span>{user.username}</span>
             </div>

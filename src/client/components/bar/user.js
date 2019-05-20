@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({ user }) => {
+const UserBar = ({ user }) => {
   if (!user) {
     return null;
   }
@@ -12,3 +13,16 @@ export default ({ user }) => {
     </div>
   );
 };
+
+UserBar.defaultProps = {
+  user: null,
+};
+
+UserBar.propTypes = {
+  user: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+  }),
+};
+
+export default UserBar;

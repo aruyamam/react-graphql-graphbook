@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './search';
-import { UserConsumer } from '../context/user';
+import UserConsumer from '../context/user';
 import UserBar from './user';
 
 export default () => (
